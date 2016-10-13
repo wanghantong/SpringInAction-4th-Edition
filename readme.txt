@@ -17,6 +17,7 @@ bookstore-data 进行数据抓取和存储,先实现亚马逊数据的抓取,暂
 9.切入点<诗人类>Minstrel运行正常,入口AOPMinstrelMain,实现了AOP
 10.在parent&learn-spring中更新的pom引用,参考的是spring的官方文档的2.2.1&2.2.2章节;http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/
 11.在parent包中引入spring-messaging
+注意:此时使用的是xml的方式,xml目录src/main/sources/spring/....
 2016.10.10
 ——————————————————————————————————————————————————————
 12.spring在不同环境下的切换,使用spring3的profile
@@ -36,7 +37,65 @@ http://zilongsky-gmail-com.iteye.com/blog/2032001 ——— Maven 整合 spring 
 13.自动扫描
 新建包目录com.bookstore.learn.spring.demo.autoscan
 此代码不涉及配置文件,采用一个Config类作为基础配置,默认情况下只扫描该类所在包下的全部类,在测试时配置调用这个类就可以
-(未清楚)如何在注解中增加参数进行多包下的扫描
+补充:自动扫描的核心
+a.在实现类上增加注解@Component,将该bean声明为组件,这样就交给spring管理
+b.再声明一个配置类,该类只做为启动配置使用,不参与其它工作,在该类上增加注解@Configuration@ComponentScan,第一个注解表示
+该类为配置类,第二个注解表示让spring进行扫描,不写参数默认扫描本包下,如果跨包需要加参数:方案A:增加包名的字符串@ComponentScan("")
+方案B:@ComponentScan(basePackages="xxx,yyy")方案C:@ComponentScan(BasePackageClasses={A.Class,B.class})
+总结:字符串容易写错,用类名又得写很多
+c.在测试的时候要在测试类上加上该注解,表示让spring知道并且调用这个配置类@ContextConfiguration(classes = CDPlayerConfig.class)
+代码路径:com.bookstore.learn.spring.demo.autoscan
+2016.10.11
+_______________________________________________________
+14.引入了SystemOutRule类,源自system-rule包,方便测试,可以接收控制台输出,减少测试代码的System.out.print
+用法:(注意结尾的\n,没有这个会报错)
+@Rule
+	public final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+	String log = systemOutRule.getLog();——返回的是全部的打印信息
+		Assert.assertEquals("SgtPeppers lovely heart...The winner\n", log);
+_______________________________________________________		
+15.通过Java代码进行装配
+思路核心:
+a.不再需要将bean声明为组件,即取消@Component注解,然后在配置类中通过@Bean注解进行标识,让spring实例化这个bean
+b.在配置类中实例化这个bean时可以采用任意的方法,new ..(),或者加各种逻辑只要返回的是正确的实例就可以
+代码路径:com.bookstore.learn.spring.demo.javaConfig(代码已经提交)
+
+16.通过xml进行装配(结合c|p|util三个标签的使用)
+a.在哪引入spring标签的命名空间?http://www.springframework.org/schema/一般都在这了,但是没有c,p,可以这个确实好用
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:c="http://www.springframework.org/schema/c"
+xmlns:util="http://www.springframework.org/schema/util"
+附:c标签是用来替代构造函数注入的 
+代码路径:com.bookstore.learn.spring.demo.basexml
+附:p标签是用来替代属性注入的
+属性注入是基于setXXX()方法注入的,所以要将bean中的set方法实现,同时要保证bean有一个无参构造器的实现-原理就是反射嘛
+p标签同样不能实现集合类的注入,此时对于集合类可以使用<property name="">来注入
+附:使用util标签来注入集合类
+引入命名空间
+xmlns:util="http://www.springframework.org/schema/util"
+...
+http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util.xsd">
+使用util标签声明属性
+<util:list id="list">
+		<value>wang</value>
+		<value>han</value>
+		<value>tong</value>
+</util:list>
+使用p标签引用属性-根据ID引用
+<bean id="blankDisc" class="com.bookstore.learn.spring.demo.basexml.BlankDisc"
+		p:title="abc" p:artist="dragon" p:list-ref="list" p:set-ref="set">
+17.Java代码中混合xml进行装配
+使用@ImportResource("classpath:xx/xx.xml")注解来加入XML配置的bean
+a.这个注解可以加在原来的JavaConfig类上,也可以再创建一个Config类,引入之前的Config类和这个新增的xml配置,
+分别使用注解@Import(xxx.class,yyy.class)@ImportResource("classpath:xx/xx.xml")
+b.同时也可以使用@Import注解来进行多个javaConfig直接的引入
+代码目录:com.bookstore.learn.spring.demo.javaconfigImportXML
+18.测试xml中混合Java代码装配
+
+————————end Chapter 2——————
+
+
 
 
 
