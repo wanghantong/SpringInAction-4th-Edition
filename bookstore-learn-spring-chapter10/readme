@@ -33,5 +33,44 @@
 5.2Jndi模式加载数据源,资源文件不会写,功能不可用
 ——————————————————————————————————————————————————————————————————————————
 6.基于xml方式来加载数据源
+目前完成的druid,c3p0,dbcp,jdbc的几种配置
 
-2016.11.11
+——————————————————————————————————————————————————————————————————————————
+h2嵌入式数据库介绍:
+安装环境:mac os x 10.12
+安装命令:brew install h2
+安装依赖:brew,xcode,jdk7+
+目录介绍:
+Directory	Contents
+bin	JAR and batch files
+docs	Documentation
+docs/html	HTML pages
+docs/javadoc	Javadoc files
+ext	External dependencies (downloaded when building)
+service	Tools to run the database as a Windows Service
+src	Source files
+src/docsrc	Documentation sources
+src/installer	Installer, shell, and release build script
+src/main	Database engine source code
+src/test	Test source code
+src/tools	Tools and database adapters source code
+
+启动方式:
+1.守护进程(作为服务):brew services start h2
+2.即时启动:h2
+
+默认的控制台:
+http://localhost:8082/
+修改端口:
+user home directory:   .h2.server.properties
+|——————————————————————————————————————————————————
+|webAllowOthers: allow other computers to connect.|
+|webPort: the port of the H2 Console              |
+|webSSL: use encrypted TLS (HTTPS) connections.   |
+|——————————————————————————————————————————————————
+
+h2官方文档:http://www.h2database.com/html/tutorial.html
+
+2016.11.14
+
+
