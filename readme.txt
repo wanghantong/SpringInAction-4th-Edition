@@ -1,4 +1,9 @@
-1.项目介绍:bookstore——二手图书交易平台，
+1.项目介绍:bookstore——图书数据爬取,从Amazon、jd、dangdang中爬取图书相关数据存入到数据库中,做数据储备
+相关技术:
+java,
+jsoup,webdriver,
+spring,hibernate
+mysql
 2.项目目录结构
 bookstore-parent —— 根项目
 bookstore-data —— 数据抓取项目,继承自bookstore-parent
@@ -11,6 +16,8 @@ bookstore-data 进行数据抓取和存储,先实现亚马逊数据的抓取,暂
 2016.09.10基础环境bookstore-parent、bookstore-data 搭建完成(类路径等还未调试),依赖部分引入,bookstore-data的domain进行了基本定义,WebDriverListener还未实现,
 目前调起URL出现问题,页面不跳转(未解决)
 ——————————————————————————————————————————————————————
+学习spring 通过spring in action一书
+
 6.在bookstore-data下创建了一个source目录<META-INF>,存放spring的applicationContext.xml配置文件,文件源于海峰
 7.新建了一个module，bookstore-learn-spring用于学习spring, 参考spring IN Action一书
 8.骑士类Knight 运行正常, 入口 KnightMain,实现了构造器注入
@@ -91,9 +98,73 @@ a.这个注解可以加在原来的JavaConfig类上,也可以再创建一个Conf
 分别使用注解@Import(xxx.class,yyy.class)@ImportResource("classpath:xx/xx.xml")
 b.同时也可以使用@Import注解来进行多个javaConfig直接的引入
 代码目录:com.bookstore.learn.spring.demo.javaconfigImportXML
-18.测试xml中混合Java代码装配
-
+18.测试xml中混合Java代码装配--混合的自动装配
+在xml中混合Java代码、自动发现的代码其本质逻辑是在xml中配置一个bean,这个bean就是在自动发现和Java配置时用的config类
+至于在Config类上的@ComponentScan和XML中配置的<context:component-scan base-package="">是一样的,但是在XML优先原则时,
+Config类上的@ComponentScan配置的包可能小于等于整个项目全部的包,所以这里尽量应该以XML为主,或者Config类上的@ComponentScan只
+负责Java配置类这一部分的包的引用,这样可以互不干扰,保持项目清晰整洁
+注:在XML配置时,系统优先检查XML,也就是说不可以配置成某个bean的参数引用了另一个bean--但是他是Java配置的或者自动扫描的,这样XML解析就会
+出现异常
+代码目录:com.bookstore.learn.spring.demo.XMLImportJavaconfig
 ————————end Chapter 2——————
+19.基于注解的profile使用
+profile两种使用方式:一、基于注解的 二、基于xml的
+
+
+
+20.设置Profile属性的6中方式
+
+21.条件化bean @Conditional-@Condition类的功能和使用-ConditionContext类能干嘛-Environment类能干嘛
+
+22.解决装配的歧义@Qualifier,自定义Qualifier子注解
+
+23.bean的作用域
+			^
+			|
+完成对 第三部分 后端中的spring 学习后,再进行学习
+
+24.运行时注入
+用Environment读取properties
+代码目录:com.bookstore.learn.spring.demo.autoInject
+方法:一、使用@PropertySource注解进行指定properties文件的位置
+e.g. @PropertySource("classpath:/setter.properties")
+二、创建Environment引用,由spring注入,使用getProperty()方法
+e.g. 
+@Autowired
+Environment env;
+env.getProperty("");
+三、可以检查属性是否存在,获取不同类型的属性值
+env.containsProperty()
+
+使用spring表达式
+字面值
+bean、属性、方法
+使用类类型
+运算符
+正则
+
+—————————————————chapter 3 end —————————————————————————————————————————————————————————
+计算集合
+—————————————————chapter 4 start —————————————————————————————————————————————————————————
+1.静态代理
+2.动态代理-jdk
+3.动态代理-cglib
+4.aop
+前置通知
+后置通知
+环绕通知
+—————————————————chapter 4 end —————————————————————————————————————————————————————————
+—————————————————chapter 10 start ——————————————————————————————————————————————————————
+学习内容:spring与jdbc,dbcp,c3p0,druid
+代码模块:bookstore-learn-spring-chapter10
+内容拆分:
+1.使用Java配置的方式配置数据库连接池,获取数据源
+2.使用xml的方式配置数据库连接池
+细节:参考模块内readme
+—————————————————chapter 10 end —————————————————————————————————————————————————————————
+
+
+
 
 
 
