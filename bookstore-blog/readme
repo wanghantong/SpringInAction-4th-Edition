@@ -1,4 +1,6 @@
 project name:个人博客
+project type:web project
+依赖了jetty插件:启动jetty服务器命令: jetty:run
 工程结构:
 src/main/resources——配置文件夹
 src/main/java——代码文件夹
@@ -6,4 +8,8 @@ com.bookstore.blog.domain——领域模型(JavaBean)
 com.bookstore.blog.service——业务层接口
 com.bookstore.blog.repository——数据层接口
 src/main/test——测试代码文件夹
-
+webapp——web目录
+webapp/bootstrap——bootstrap框架的核心类库
+webapp/style——项目的样式文件css,js,image
+webapp/detail.html——文章详情页
+webapp/index.html——首页
