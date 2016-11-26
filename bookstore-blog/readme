@@ -1,0 +1,9 @@
+project name:个人博客
+工程结构:
+src/main/resources——配置文件夹
+src/main/java——代码文件夹
+com.bookstore.blog.domain——领域模型(JavaBean)
+com.bookstore.blog.service——业务层接口
+com.bookstore.blog.repository——数据层接口
+src/main/test——测试代码文件夹
+
