@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -8,19 +9,22 @@
 	<modules>
 		<module>bookstore-data</module>
 		<module>bookstore-learn-spring</module>
+		<module>bookstore-learn-spring-chapter10</module>
+		<module>bookstore-interview</module>
+		<module>bookstore-blog</module>
+		<module>bookstore-learn-spring-chapter11</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
 		<junit.version>4.12</junit.version>
+		<system-rules.version>1.16.1</system-rules.version>
 
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j-simple.version>1.7.12</slf4j-simple.version>
 		<javassist.version>3.20.0-GA</javassist.version>
 		<mime4j.version>0.6</mime4j.version>
-		<jsoup.version>1.8.2</jsoup.version>
-		<selenium2.version>2.47.1</selenium2.version>
 		<!-- <selenium2.version>2.53.1</selenium2.version> -->
 		<xml-apis.version>1.4.01</xml-apis.version>
 		<jxpath.version>1.3</jxpath.version>
@@ -28,23 +32,51 @@
 		<jxl.version>2.6.12</jxl.version>
 		<poi.version>3.10-FINAL</poi.version>
 		<codec.version>1.9</codec.version>
+		<javax.inject.version>1</javax.inject.version>
+
+		<ow2-servlet-3.0-spec.version>1.0.13</ow2-servlet-3.0-spec.version>
+		<jsp-api.version>2.2</jsp-api.version>
+		<jstl.version>1.2.1</jstl.version>
+		<javax.el-api.version>3.0.0</javax.el-api.version>
+
 		<springframework.version>2.5.6</springframework.version>
 		<spring-test.version>4.2.0.RELEASE</spring-test.version>
+		<!-- spring-orm 4.3.4.RELEASE -->
 		<spring-orm.version>4.2.0.RELEASE</spring-orm.version>
+
 		<spring-boot-starter.version>1.2.5.RELEASE</spring-boot-starter.version>
 		<h2.version>1.4.187</h2.version>
-		<hibernate-core.version>4.3.6.Final</hibernate-core.version>
+		<!-- hibernate version start -->
+		<!--<hibernate-core.version>4.3.6.Final</hibernate-core.version> -->
 		<hibernate.ga.version>3.2.6.ga</hibernate.ga.version>
-		<hibernate-core.version>4.3.10.Final</hibernate-core.version>
-		<hibernate-testing.version>4.3.6.Final</hibernate-testing.version>
+		<hibernate-core.version>5.2.5.Final</hibernate-core.version>
+		<hibernate-validator.version>5.3.3.Final</hibernate-validator.version>
+		<hibernate-jpa-2.0-api.version>1.0.1.Final-redhat-3</hibernate-jpa-2.0-api.version>
+		<hibernate-testing.version>5.2.5.Final</hibernate-testing.version>
+		<hibernate-entitymanager.version>5.2.5.Final</hibernate-entitymanager.version>
+		<hibernate-c3p0.version>5.2.5.Final</hibernate-c3p0.version>
+		<hibernate-ehcache.version>5.2.5.Final</hibernate-ehcache.version>
+		<!-- hibernate version end -->
 		<jta.version>1.1</jta.version>
 		<maven-plugin-api.version>3.3.9</maven-plugin-api.version>
-
+		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
+		<druid.version>1.0.26</druid.version>
+		<c3p0.version>0.9.5.2</c3p0.version>
+		<h2.version>1.4.193</h2.version>
+		<derby.version>10.13.1.1</derby.version>
 		<mysql-connector-java.version>5.1.31</mysql-connector-java.version>
+
+		<jetty-maven-plugin.version>9.3.14.v20161028</jetty-maven-plugin.version>
+		<!-- UI Automation Start -->
+		<selenium-java.version>3.0.1</selenium-java.version>
+		<jsoup.version>1.10.1</jsoup.version>
 	</properties>
 
 	<dependencyManagement>
+
+
 		<dependencies>
+
 			<!-- log4j -->
 			<dependency>
 				<groupId>log4j</groupId>
@@ -70,19 +102,22 @@
 				<artifactId>apache-mime4j</artifactId>
 				<version>${mime4j.version}</version>
 			</dependency>
-			<!-- Jsoup -->
+
+			<!-- UI automation start -->
+			<!-- org.seleniumhq.selenium/selenium-java -->
 			<dependency>
-				<!-- jsoup HTML parser library @ http://jsoup.org/ -->
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-java</artifactId>
+				<version>${selenium-java.version}</version>
+			</dependency>
+			<!-- /org.jsoup/jsoup -->
+			<dependency>
 				<groupId>org.jsoup</groupId>
 				<artifactId>jsoup</artifactId>
 				<version>${jsoup.version}</version>
 			</dependency>
-			<!-- selenium2 -->
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-java</artifactId>
-				<version>${selenium2.version}</version>
-			</dependency>
+
+
 			<!-- xml-apis -->
 			<dependency>
 				<groupId>xml-apis</groupId>
@@ -134,6 +169,12 @@
 				<version>${junit.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.github.stefanbirkner</groupId>
+				<artifactId>system-rules</artifactId>
+				<version>${system-rules.version}</version>
+			</dependency>
+
 			<!-- testng -->
 			<dependency>
 				<groupId>org.testng</groupId>
@@ -146,8 +187,45 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
+			<dependency>
+				<groupId>javax.inject</groupId>
+				<artifactId>javax.inject</artifactId>
+				<version>${javax.inject.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.ow2.spec.ee/ow2-servlet-3.0-spec -->
+			<dependency>
+				<groupId>org.ow2.spec.ee</groupId>
+				<artifactId>ow2-servlet-3.0-spec</artifactId>
+				<version>${ow2-servlet-3.0-spec.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp-api.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api -->
+			<dependency>
+				<groupId>javax.servlet.jsp.jstl</groupId>
+				<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+				<version>${jstl.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>javax.el-api</artifactId>
+				<version>${javax.el-api.version}</version>
+			</dependency>
+
+
+
+
 			<!-- spring framework reference http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/ 
 				2.2.1 -->
+			<!-- Spring Core start -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
@@ -170,15 +248,20 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
-				<artifactId>spring-test</artifactId>
-				<version>${spring-test.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
 				<artifactId>spring-expression</artifactId>
 				<version>${spring-test.version}</version>
 			</dependency>
+			<!-- Spring Core end -->
 
+			<!-- Spring Test start -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring-test.version}</version>
+			</dependency>
+			<!-- Spring Test end -->
+
+			<!-- Spring AOP start -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
@@ -189,6 +272,8 @@
 				<artifactId>spring-aspects</artifactId>
 				<version>${spring-test.version}</version>
 			</dependency>
+			<!-- Spring AOP end -->
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-instrument</artifactId>
@@ -202,7 +287,7 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-messaging</artifactId>
-				<version>${spring-test.version</version>
+				<version>${spring-test.version}</version>
 			</dependency>
 
 			<!-- spring orm -->
@@ -211,6 +296,67 @@
 				<artifactId>spring-orm</artifactId>
 				<version>${spring-orm.version}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring-orm.version}</version>
+			</dependency>
+
+			<!-- spring-tx -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring-orm.version}</version>
+			</dependency>
+
+			<!-- spring-oxm -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-oxm</artifactId>
+				<version>${spring-orm.version}</version>
+			</dependency>
+
+
+
+
+
+			<!-- commons-dbcp2 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-dbcp2</artifactId>
+				<version>${commons-dbcp2.version}</version>
+			</dependency>
+
+			<!-- com.alibaba/druid pool -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+
+			<!-- com.mchange/c3p0 pool -->
+			<dependency>
+				<groupId>com.mchange</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>${c3p0.version}</version>
+			</dependency>
+
+
+			<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
+			<dependency>
+				<groupId>org.apache.derby</groupId>
+				<artifactId>derby</artifactId>
+				<version>${derby.version}</version>
+			</dependency>
+
 			<!-- spring-boot -->
 
 			<dependency>
@@ -246,9 +392,20 @@
 				<scope>test</scope>
 				<version>${spring-boot-starter.version}</version>
 			</dependency>
-			<!-- hibernate4.3.6 -->
+
+
+
+			<!-- jta1.1,hibernate need this -->
+			<dependency>
+				<groupId>javax.transaction</groupId>
+				<artifactId>jta</artifactId>
+				<version>${jta.version}</version>
+			</dependency>
+			<!-- hibernate start -->
+
 			<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-core</artifactId> 
 				<version>${hibernate-core.version}</version> </dependency> -->
+
 			<!-- hibernate3.2.6.ga -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
@@ -257,32 +414,50 @@
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-core</artifactId>
-				<version>${hibernate-core.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-testing</artifactId>
-				<version>${hibernate-core.version}</version>
+				<version>${hibernate-testing.version}</version>
 			</dependency>
-			<!-- jta1.1,hibernate need this -->
-			<dependency>
-				<groupId>javax.transaction</groupId>
-				<artifactId>jta</artifactId>
-				<version>${jta.version}</version>
-			</dependency>
-			<!-- hibernate jpa -->
+
+			<!-- hibernate-entitymanager -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-entitymanager</artifactId>
-				<version>${hibernate-core.version}</version>
+				<version>${hibernate-entitymanager.version}</version>
 			</dependency>
+
 			<!-- hibernate-c3p0 -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-c3p0</artifactId>
+				<version>${hibernate-c3p0.version}</version>
+			</dependency>
+
+			<!-- hibernate-core -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
 				<version>${hibernate-core.version}</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate-validator.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.0-api -->
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.0-api</artifactId>
+				<version>${hibernate-jpa-2.0-api.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-ehcache -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-ehcache</artifactId>
+				<version>${hibernate-ehcache.version}</version>
+			</dependency>
+
+			<!-- hibernate 5.2.5.Final end -->
 
 			<dependency>
 				<groupId>mysql</groupId>
@@ -296,6 +471,20 @@
 				<artifactId>maven-plugin-api</artifactId>
 				<version>${maven-plugin-api.version}</version>
 			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-webapp -->
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-webapp</artifactId>
+				<version>${jetty-webapp.version}</version>
+			</dependency>
+
+
+
+
+
+
+
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -362,6 +551,11 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-report-plugin</artifactId>
 					<version>2.19.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>${jetty-maven-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
