@@ -7,6 +7,7 @@ mysql
 2.项目目录结构
 bookstore-parent —— 根项目
 bookstore-data —— 数据抓取项目,继承自bookstore-parent
+bookstore-blog —— 个人博客项目,继承自bookstore-parent
 3.配置文件介绍
 bookstore-parent —— pom.xml 父pom,定义了编码、JDK版本、依赖、依赖的插件(插件和类有重复，待测试)、本地仓库(暂未开启配置)
 bookstore-data —— pom.xml 数据项目的依赖配置,继承自parent
