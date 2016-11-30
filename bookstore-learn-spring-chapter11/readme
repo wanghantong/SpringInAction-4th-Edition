@@ -1,0 +1,54 @@
+书中源码:
+src/main/java/spittr.*
+src/test/java/spittr.*
+src/test/resources/spittr.*
+一、学习Spring In Action Chapter 11
+1.spring4+hibernate4+database(这里的版本很重要,本人很久不写代码,所以上来选的是spring4.2.0+hibernate5.2.5Final,
+结果报错类找不到,但是点击进去类还是存在的,查了半天发现是版本不兼容的问题。最后换成了spring4.3.4.RELEASE,Hibernate4.3.11.Final
+才算解决了问题——这种版本问题还是比较坑的)
+1.1数据库环境:mysql5.5数据库
+
+version:spring4.3.4.RELEASE + Hibernate4.3.11.Final + druid
+
+domain:Article
+repository:ArticleRepository
+repository-implements:ArticleRepositoryImpl
+spring-config:RepositoryConfig
+
+configuration:
+sql-schema:/bookstore-learn-spring-chapter11/src/main/resources/database/schema-me.sql
+database-configuration:/bookstore-learn-spring-chapter11/src/main/resources/database/mysql.properties
+spring-applicationContext.xml:/bookstore-learn-spring-chapter11/src/main/resources/druid.xml
+
+test:ArticleRepositoryImplTest(src/test/java)
+
+配置详解:(java配置中混合xml配置)
+一、xml的声明
+1.xml中声明bean:dataSource 
+2.xml中声明bean:sessionFactory(packagesToScan):ref-dataSource
+3.xml中声明bean:transactionManager:ref-sessionFactory
+4.xml中声明bean(使用Spring异常处理机制):org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor
+
+二、Java Config声明
+1.未做任何实体Bean声明
+2.声明当前类为Config类:@Configuration
+3.开启事务管理器:@EnableTransactionManagement——(这个配置在这管用吗?应该在这出现吗？)
+4.开启包扫描:@ComponentScan
+5.引入外部xml中声明的Bean:@ImportResource("classpath:druid.xml")
+
+三、声明Repository(Spring是基于接口的代理(cglib是基于类的)——说这一堆和配置有关系吗?)
+1.将repository-implements:ArticleRepositoryImpl——声明为@Repository
+2.开启事务:@EnableTransactionManagement
+3.因为我数据库操作(实现类才会具体操作)要用到session,所以注入(通过构造函数)sessionFactory(在xml中声明的)
+
+四、测试
+1.使用spring进行测试:@RunWith(SpringJUnit4ClassRunner.class)
+2.加载Java Config:@ContextConfiguration(classes = RepositoryConfig.class)
+3.创建Repository引用,并由spring注入(@Autowired | @Inject )
+@Autowired
+ArticleRepository articleRepositoryImpl;
+
+done.
+2016.11.29 By Dragon.
+
+
