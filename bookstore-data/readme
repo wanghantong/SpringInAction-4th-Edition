@@ -1,0 +1,18 @@
+工程目标:图书数据爬取,从Amazon、jd、dangdang中爬取图书相关数据存入到数据库中,做数据储备
+目录结构:
+src/main/java
+com.bookstore.data.tools——常用工具类,WebDriver的初始化封装、POI实现参考、文件操作参考、日期格式化
+com.bookstore.data.webdriver.utils——WebDriver的工具类,对查找元素操作进行封装
+org.bookstore.data.domain——数据bean
+org.bookstore.data.service——数据转换
+src/main/resouces
+src/test/java
+chromedriver:selenium2———chrome的桥接工具(forMac)
+
+进度:
+1.基础环境配置完成
+2.准备弃用原有的BaseUtils工具类,重写创建ElementUtil工具类(部分移植完成)
+3.目前完成了爬取亚马逊的图书数据的demo
+
+2016.12.07
+By Dragon.
