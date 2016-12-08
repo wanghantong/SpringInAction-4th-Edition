@@ -1,4 +1,4 @@
-package org.bookstore.learn.spring.chapter11.repository;
+package org.bookstore.learn.spring.chapter11.hibernate.repository;
 
 import java.util.List;
 
