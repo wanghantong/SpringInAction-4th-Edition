@@ -20,18 +20,22 @@
 		</dependency>
 
 		<!-- Java EE Container Start -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
 		<!-- ow2-servlet-3.0-spec -->
 		<dependency>
 			<groupId>org.ow2.spec.ee</groupId>
 			<artifactId>ow2-servlet-3.0-spec</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
+		<!-- jsp-api -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api -->
+		<!-- jstl-api -->
 		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
@@ -65,6 +69,7 @@
 			<artifactId>spring-expression</artifactId>
 		</dependency>
 		<!-- Spring Core end -->
+
 		<!-- Spring Test start -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -75,7 +80,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-instrument</artifactId>
 		</dependency>
-		<!-- Spring end -->
 		<!-- Spring AOP start -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -88,6 +92,25 @@
 		<!-- Spring AOP end -->
 
 		<!-- Spring end -->
+		<!-- Spring end -->
+
+		<!-- Hibernate Start -->
+		<!-- hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-validator</artifactId> 
+			</dependency> <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-testing</artifactId> 
+			</dependency> -->
+
+		<!-- hibernate-entitymanager -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+		<!-- Hibernate Start -->
 
 		<!-- Database Pools Start -->
 
@@ -109,7 +132,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-	
+		<!-- Database Driver End -->
 	</dependencies>
 	<build>
 		<finalName>bookstore-blog</finalName>
