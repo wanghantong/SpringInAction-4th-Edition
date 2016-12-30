@@ -15,7 +15,8 @@
 
 	<!-- 1.加载数据库配置的属性文件 image配置属性文件 -->
 	<!--<context:property-placeholder location="classpath*:/*.properties"/> -->
-	<context:property-placeholder location="classpath:/database/mysql.properties" />
+	<context:property-placeholder location="classpath:/mysql.properties" />
+	<context:component-scan base-package="com.bookstore.*,com.*" />
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
@@ -51,28 +52,22 @@
 		<!-- 配置监控统计拦截的filters -->
 		<property name="filters" value="stat" />
 	</bean>
-	<!-- c3p0数据库连接池 -->
-	<bean id="c3P0PooledDataSource" class="com.mchange.v2.c3p0.jboss.C3P0PooledDataSource">
-		<property name="user" value="${username}"></property>
-		<property name="password" value="${password}"></property>
-		<property name="jdbcUrl" value="${jdbcUrl}"></property>
-		<property name="driverClass" value="${driverClass}"></property>
+	<bean id="sessionFactory"
+	class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.bookstore.blog.*" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
 	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<!-- dbcp 数据库连接池 -->
-	<bean id="basicDataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-		<property name="username" value="${username}"></property>
-		<property name="password" value="${password}"></property>
-		<property name="url" value="${jdbcUrl}"></property>
-		<property name="driverClassName" value="${driverClass}"></property>
-		<property name="initialSize" value="${initialSize}"></property>
-	</bean>
-	<!-- jdbc 连接 -->
-	<bean id="driverManagerDataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="username" value="${username}"></property>
-		<property name="password" value="${password}"></property>
-		<property name="url" value="${jdbcUrl}"></property>
-		<property name="driverClassName" value="${driverClass}"></property>
-	</bean>
 </beans>
