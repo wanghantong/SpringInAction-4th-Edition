@@ -1,0 +1,272 @@
+#tradeType > li {
+    display: none;
+}
+
+body {
+    min-height: 640px;
+}
+
+.body {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-height: 640px;
+    background: url("https://img.58cdn.com.cn/mis/gsso/images/version3/back.jpg") no-repeat;
+    background-position: bottom;
+    -ms-background-position: bottom;
+}
+
+.body .bottom {
+    background: url("https://img.58cdn.com.cn/mis/gsso/images/version3/logo.png");
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    width: 315px;
+    height: 22px;
+    background-position: center;
+    -ms-background-position: center;
+    background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+}
+
+.main {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    min-width: 400px;
+    width: 400px;
+}
+
+.main .logo {
+    margin: auto;
+    background: url("https://img.58cdn.com.cn/mis/gsso/images/version3/58logo.png") no-repeat;
+    width: 70px;
+    height: 63px;
+    background-position: center;
+    -ms-background-position: center;
+    background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+}
+
+.main .word1 {
+    text-align: center;
+    padding-top: 14px;
+    font-size: 18px;
+    color: #555555;
+    margin-bottom: 76px;
+}
+
+.main .inputBox {
+    text-align: center;
+}
+
+.main .inputBox .putBox {
+    width: 400px;
+    height: 50px;
+    display: block;
+    background: #FFFFFF;
+    border: 1px solid #DEDEDE;
+    border-radius: 2px;
+}
+
+.main .inputBox .putBox .itext,
+.main .inputBox .putBox .ipassword {
+    font-size: 14px;
+    color: #555;
+    float: left;
+    margin-top: 4px;
+    vertical-align: middle;
+    display: inline-block;
+    width: 300px;
+    height: 40px;
+    background: #FFFFFF;
+    text-indent: 21px;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    margin-right: 0px;
+}
+
+.main .inputBox .putBox .loginPut {
+    width: 368px !important;
+}
+
+.main .inputBox .putBox .line {
+    margin-left: 0px;
+    display: inline-block;
+    width: 0;
+    height: 20px;
+    border-right: 1px solid #DEDEDE;
+    vertical-align: middle;
+}
+
+.main .inputBox .putBox .ibutton {
+    cursor: pointer;
+    display: inline-block;
+    background: #FFFFFF;
+    width: 83px;
+    border: none;
+    border-top-left-radius: 0;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-top-left-radius: 0;
+    -ms-border-top-left-radius: 0;
+    border-top-right-radius: 2px;
+    -webkit-border-top-right-radius: 2px;
+    -moz-border-top-right-radius: 2px;
+    -ms-border-top-right-radius: 2px;
+    border-bottom-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-bottom-left-radius: 0;
+    -ms-border-bottom-left-radius: 0;
+    border-bottom-right-radius: 2px;
+    -webkit-border-bottom-rught-radius: 2px;
+    -moz-border-bottom-right-radius: 2px;
+    -ms-border-bottom-right-radius: 2px;
+    height: 50px;
+    font-size: 14px;
+    color: #0091D7;
+    outline: none;
+}
+
+.main .inputBox .putBox .ibutton:hover {
+    color: #41c1ff;
+}
+
+.main .inputBox .active {
+    border: 1px solid rgba(255, 84, 46, 0.93);
+    box-shadow: 0px 0px 4px 0px rgba(255, 84, 46, 0.25);
+}
+
+.main .inputBox .selectBox {
+    line-height: 22px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #555555;
+}
+
+.main .inputBox .selectBox .icheckbox {
+    opacity: 0;
+    margin: 0;
+    vertical-align: middle;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.main .inputBox .selectBox label {
+    position: relative;
+    display: inline-block;
+}
+
+.main .inputBox .selectBox label .inputCheckBox1 {
+    position: absolute;
+    z-index: -1;
+    left: -28px;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    background: url("https://img.58cdn.com.cn/mis/gsso/images/version3/unselect.png") no-repeat;
+}
+
+.main .inputBox .selectBox label .inputCheckBox2 {
+    position: absolute;
+    z-index: -1;
+    left: -28px;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    background: url("https://img.58cdn.com.cn/mis/gsso/images/version3/select.png") no-repeat;
+}
+
+.main .inputBox .passWord {
+    height: 22px;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #555555;
+    line-height: 22px;
+}
+
+.main .inputBox .passWord p {
+    display: inline;
+}
+
+.main .inputBox .passWord p b {
+    color: #FF552E;
+}
+
+.main .inputBox .passWord2 {
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #9297A3;
+    line-height: 22px;
+}
+
+.main .inputBox .passWord2 span:hover {
+    color: #FF552E;
+}
+
+.main .inputBox .submitPut {
+    margin: auto;
+    margin-top: 60px;
+    width: 200px;
+    height: 40px;
+    background: #FF552E;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    font-size: 16px;
+    color: #FFFFFF;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.main .inputBox .loginPut {
+    margin: auto;
+    margin-top: 16px;
+    width: 200px;
+    height: 40px;
+    background: #FF552E;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    font-size: 16px;
+    color: #FFFFFF;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.main .inputBox .loginPut:hover,
+.main .inputBox .submitPut:hover {
+    background: #FF7A5B;
+}
+
+.pop {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background: #F6F6F6;
+    z-index: 30;
+    border-radius: 2px;
+}
+
+.mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    opacity: 0.4;
+    z-index: 25;
+}

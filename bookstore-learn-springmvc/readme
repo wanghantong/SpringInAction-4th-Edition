@@ -1,0 +1,46 @@
+1.学习Spring In Action Chapter 5,6,7
+2.环境搭建:
+2.1导入环境依赖Servlet3.1Jar
+2.2maven工程只支持Servlet2.3,所以修改配置文件默认配置来支持Servlet3
+2.3进入到工程目录下,修改org.eclipse.wst.common.project.facet.core.xml
+——>/.settings/org.eclipse.wst.common.project.facet.core.xml
+--><installed facet="jst.web" version="3.1"/>
+2.4修改配置:properties-->project facet-->Dynamic Web Module-->3.0/3.1
+2.5refresh project + update maven project
+3.创建web层配置类继承WebMvcConfigurerAdapter,
+3.1实例化视图解析器的bean(声明视图解析器的bean)
+3.2配置默认的Servlet的Handler
+3.3配置视图解析器
+3.4将该类声明为配置类@|Configuration
+3.5开启springMVC|@EnableWebMvc
+3.6配置包扫描路径|@ComponentScan("com.bookstore.learn.springmvc.controller")
+4.创建业务层、数据层配置类
+4.1将该类声明为配置类@Configuration
+4.2配置包扫描路径,并且排除过滤器@ComponentScan(basePackages = { "com.bookstore.learn.springmvc.repository",
+		"com.bookstore.learn.springmvc.service" }, excludeFilters = {
+				@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
+5.声明Servlet初始化文件,继承AbstractAnnotationConfigDispatcherServletInitializer
+实现抽象方法后配置DispatcherServlet默认拦截路径和web层和业务数据层的配置类
+6.注意web容器要支持servlet3,并且JDK1.7+
+
+2016.12.18 by Dragon
+————————————————————————————————————————————————————————————————————
+1.WEB-INF/public目录:存放JS,CSS,IMG等文件
+2.对页面配置访问Controller的路径进行测试和总结:
+结论:1.在配置路径访问时,路径要以'/'开头,这样能够规避跨不同Controller时,每个Controller的类级别的@RequestMapping()中value值是否为'/'都能保证页面的正常调整
+2017.06.29 by Dragon
+————————————————————————————————————————————————————————————————————
+如何自动化测试SpringMVC
+1.引入依赖<groupId>org.springframework</groupId><artifactId>spring-test</artifactId>
+2.熟悉几个工具类
+// MockMvcBuilders:SpringMVC测试依赖的核心工具类
+// MockMvcRequestBuilders:RequestBuilder的工具类
+// MockMvcResultMatchers:ResultMatcher的工具类
+3.
+			
+
+
+
+
+
+
