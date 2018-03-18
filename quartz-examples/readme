@@ -1,0 +1,16 @@
+定时任务quartz框架学习,version2.2.1
+1.环境依赖
+<dependency>
+    <groupId>org.quartz-scheduler</groupId>
+    <artifactId>quartz</artifactId>
+    <version>2.2.1</version>
+  </dependency>
+  <dependency>
+    <groupId>org.quartz-scheduler</groupId>
+    <artifactId>quartz-jobs</artifactId>
+    <version>2.2.1</version>
+  </dependency>   
+  
+2.日志修改
+注:例子修改了默认的日志记录方式,增加了slf4j和log4j2的连接器,引入了Log4j2,采用log4j2来记录日志
+

@@ -1,6 +1,5 @@
 package org.bookstore.learn.spring.chapter11.hibernate.repository;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.bookstore.learn.spring.chapter11.domain.Article;
@@ -23,14 +22,14 @@ public class ArticleRepositoryImpl implements ArticleRepository {
 
 	private Session currentSession() {
 		return sessionFactory.openSession();
-//		return sessionFactory.getCurrentSession();
-		
+		// return sessionFactory.getCurrentSession();
+
 	}
 
 	@Override
-	public void saveArticle(Article article) {
-		Serializable save = currentSession().save(article);
-		
+	public long saveArticle(Article article) {
+		return (long) currentSession().save(article);
+
 	}
 
 	@Override

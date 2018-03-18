@@ -1,3 +1,5 @@
+create database IF NOT EXISTS bookdata CHARACTER SET=utf8 COLLATE=utf8_general_ci;
+
 drop table if exists article_category;
 drop table if exists article_categories;
 drop table if exists category;
@@ -42,3 +44,15 @@ CREATE TABLE `book` (
   `translater` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE `bookdata`.`AmazonBook` 
+CHANGE COLUMN `language` `language` VARCHAR(500) NULL DEFAULT NULL ;
+
+ALTER TABLE `bookdata`.`AmazonBook` 
+CHANGE COLUMN `origin_title` `origin_title` VARCHAR(500) NULL DEFAULT NULL ;
+
+ALTER TABLE `blog`.`AmazonBook` 
+CHANGE COLUMN `origin_title` `origin_title` VARCHAR(500) NULL DEFAULT NULL ;
+ALTER TABLE `blog`.`AmazonBook` 
+CHANGE COLUMN `amazonurl` `amazonurl` VARCHAR(1200) NULL DEFAULT NULL ;

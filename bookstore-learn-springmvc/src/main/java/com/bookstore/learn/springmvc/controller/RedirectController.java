@@ -37,8 +37,8 @@ public class RedirectController {
 	@RequestMapping(value = "/redirectWithDataAccept", method = { RequestMethod.GET, RequestMethod.POST })
 	public String redirectWithDataAccept(HttpServletRequest request, HttpServletResponse response, Model model) {
 
-		System.err.println(request.getAttribute("demo"));
-		System.err.println(request.getAttribute("model1"));
+		System.err.println("request.getAttribute(demo)   " + request.getAttribute("demo"));
+		System.err.println("request.getAttribute(model1)" + request.getAttribute("model1"));
 		System.err.println(model.containsAttribute("model1"));
 		System.err.println("get redirectWithDataAccept");
 

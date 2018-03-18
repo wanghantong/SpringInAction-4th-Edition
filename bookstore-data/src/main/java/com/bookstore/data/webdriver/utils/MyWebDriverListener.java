@@ -1,8 +1,8 @@
 /**
 
- * 创建时间：Apr 16, 2014 3:22:07 PM
+ * 鍒涘缓鏃堕棿锛欰pr 16, 2014 3:22:07 PM
 
- * 项目名称：TYTestLib
+ * 椤圭洰鍚嶇О锛歍YTestLib
 
  * @author T.Y
 
@@ -10,9 +10,9 @@
 
  * @since JDK 1.7
 
- * 文件名称：MyWebDriverListener.java
+ * 鏂囦欢鍚嶇О锛歁yWebDriverListener.java
 
- * 类说明：
+ * 绫昏鏄庯細
 
  */
 package com.bookstore.data.webdriver.utils;
@@ -35,15 +35,15 @@ public class MyWebDriverListener implements WebDriverEventListener {
 
 	@Override
 	public void beforeNavigateTo(String url, WebDriver driver) {
-		System.out.println("beforeNavigateTo方法传入参数url : " + url);
+		System.out.println("beforeNavigateTo鏂规硶浼犲叆鍙傛暟url : " + url);
 		String currentUrl = driver.getCurrentUrl();
-		System.out.println("跳转之前的页面url为：" + currentUrl);
+		System.out.println("璺宠浆涔嬪墠鐨勯〉闈rl涓猴細" + currentUrl);
 	}
 
 	@Override
 	public void afterNavigateTo(String url, WebDriver driver) {
 		String currentUrl = driver.getCurrentUrl();
-		System.out.println("跳转之后的页面url为：" + currentUrl);
+		System.out.println("璺宠浆涔嬪悗鐨勯〉闈rl涓猴細" + currentUrl);
 	}
 
 	@Override
@@ -105,19 +105,19 @@ public class MyWebDriverListener implements WebDriverEventListener {
 		String dateString = DateFormat.dateChange(new Date(),
 				"yyyy-mm-dd hh-mm-ss");
 		try {
-			// 获取当前截图
+			// 鑾峰彇褰撳墠鎴浘
 			File scrFile = ((TakesScreenshot) driver)
 					.getScreenshotAs(OutputType.FILE);
-			// 创建图片文件
+			// 鍒涘缓鍥剧墖鏂囦欢
 			File screenShot = new File("test-output/exception/" + dateString
 					+ ".png");
-			// 拷贝文件
+			// 鎷疯礉鏂囦欢
 			FileUtils.copyFile(scrFile, screenShot);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("发生异常 : " + throwable.getMessage());
-		System.out.println("截图已保存至：test-output/exception/" + dateString
+		System.out.println("鍙戠敓寮傚父 : " + throwable.getMessage());
+		System.out.println("鎴浘宸蹭繚瀛樿嚦锛歵est-output/exception/" + dateString
 				+ ".png");
 	}
 

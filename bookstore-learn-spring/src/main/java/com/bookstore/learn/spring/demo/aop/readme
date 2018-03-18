@@ -1,0 +1,39 @@
+SpringAOP使用注意事项
+一、使用方式简介:
+共三种方案:
+1.基于xml环境
+2.基于自动注入的方式无xml(场景:如果系统使用java配置,自动扫描配置,那么使用这种方式做到0侵入)
+3.xml和java配置混合使用(场景:如果系统使用的是xml,则通过纯java配置方式,混合配置,做到最低侵入)
+
+二、使用方法小记
+1.使用纯xml方式
+1.1创建一个类作为切面,定义方法
+1.2在xml中创建切面类的bean节点
+<bean id="myaop" class="com.bookstore.learn.spring.demo.aop.AopDemo" />
+1.3增加切面相关配置
+<aop:config> 
+	<aop:aspect id="demo" ref="myaop">    //配置切面对应的类
+		//配置切入点,即需要拦截的方法,当前是拦截了全部的方法
+     	<aop:pointcut id="addAllMethod" expression="execution(* com.bookstore.learn.spring.demo.aop.UserService.*(..))" /> 
+     	//前置通知执行的方法printResult(来自于切面类中的方法名)
+	 	<aop:before method="printResult" pointcut-ref="addAllMethod" /> 
+	 	<aop:after method="printResult" pointcut-ref="addAllMethod" /> 
+	</aop:aspect> 
+</aop:config>
+1.4通过ApplicationContext来加载配置文件
+
+2.使用java配置方式
+2.1创建一个类作为切面,定义方法,使用@Aspect将其声明为切面,使用@Component/@Service/将其声明为Spring的组件
+2.2在切面类中创建一个方法,使用注解将其声明为切入点,并配置拦截的方法
+@Pointcut("execution(* com.bookstore.learn.spring.demo.aop.UserService.*(..))")
+2.3配置通知使用如下注解@Before("pointcutName()")<参数为切入点的方法名>
+2.4在配置类中增加@EnableAspectJAutoProxy开启切面自动代理配置
+2.5将切面列入@ComponentScan扫描的范围
+
+3.使用xml混合java配置
+3.1混合配置时要将Config类声明为Spring组件(待定)--要让Spring加载这个配置类
+3.2创建一个类作为切面,定义方法,使用@Aspect将其声明为切面,使用@Component/@Service/将其声明为Spring的组件
+3.3在切面类中创建一个方法,使用注解将其声明为切入点,并配置拦截的方法
+@Pointcut("execution(* com.bookstore.learn.spring.demo.aop.UserService.*(..))")
+
+

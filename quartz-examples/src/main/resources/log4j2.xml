@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 这个status是控制系统信息的输出级别 -->
+<Configuration status="ERROR" monitorInterval="30">
+	<Appenders>
+		<File name="File" fileName="target/Demo.log" bufferedIO="false"
+			immediateFlush="true" append="false">
+			<!-- <File name="File" fileName="target/Demo.log" bufferedIO="false" immediateFlush="true" 
+				append="false" > -->
+			<PatternLayout>
+				<Pattern>%d %p %c{1.} [%t] %X{aKey} %m %location %ex%n</Pattern>
+			</PatternLayout>
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<!-- <AsyncLogger name="org.quartz.examples.simples" level="trace" includeLocation="true" 
+			> <AppenderRef ref="File"/> </AsyncLogger> -->
+		<Logger name="org.quartz.examples.simples" level="trace"
+			includeLocation="true" additivity="false">
+			<AppenderRef ref="File" />
+		</Logger>
+		<Root level="error">
+			<AppenderRef ref="File" />
+		</Root>
+	</Loggers>
+</Configuration>

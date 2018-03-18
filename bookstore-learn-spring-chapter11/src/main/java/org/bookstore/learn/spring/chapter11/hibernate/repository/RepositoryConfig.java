@@ -3,11 +3,12 @@ package org.bookstore.learn.spring.chapter11.hibernate.repository;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @ImportResource("classpath:druid.xml")
 @ComponentScan
-//@EnableTransactionManagement
+@EnableTransactionManagement
 public class RepositoryConfig {
 
 //	@Inject

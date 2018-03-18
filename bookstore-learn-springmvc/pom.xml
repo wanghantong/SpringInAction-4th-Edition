@@ -26,6 +26,26 @@
 		</dependency>
 
 
+		<!-- log4j 2 + All Loggers Asynchronous start -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+		<!-- Making All Loggers Asynchronous,Future versions of Log4j 2 will require 
+			disruptor-3.3.3.jar or higher -->
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
@@ -179,6 +199,13 @@
 			<artifactId>spring-security-crypto</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+		</dependency>
+
+
+
 		<!-- spring data -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -220,7 +247,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.0.11.Final</version>
+			<!-- <version>5.0.11.Final</version> -->
 			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
@@ -277,18 +304,27 @@
 			<version>2.2.0</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>1.10.19</version>
-			<scope>test</scope>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.mockito</groupId> <artifactId>mockito-core</artifactId> 
+			<version>1.10.19</version> <scope>test</scope> </dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.7</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>com.bj58.agsso</groupId> <artifactId>agsso-client</artifactId> 
+			<version>1.1.5</version> </dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-cas -->
+		<!-- <dependency> <groupId>org.springframework.security</groupId> <artifactId>spring-security-cas</artifactId> 
+			</dependency> -->
+
+
 
 		<!-- <dependency> <groupId>org.codehaus.cargo</groupId> <artifactId>cargo-core-uberjar</artifactId> 
 			</dependency> <dependency> <groupId>org.codehaus.cargo</groupId> <artifactId>cargo-core-container-tomcat</artifactId> 

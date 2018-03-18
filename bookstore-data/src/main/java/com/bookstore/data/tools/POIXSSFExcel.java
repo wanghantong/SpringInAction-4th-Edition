@@ -24,7 +24,7 @@ public class POIXSSFExcel {
 	 * Operate in memory
 	 */
 	public void writeByXSSF_Dom() {
-
+		
 	}
 
 	/**

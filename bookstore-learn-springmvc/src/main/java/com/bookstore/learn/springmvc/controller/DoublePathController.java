@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * 
  * <status> : 对应parentControl.jsp,
  */
+
 @Controller
 @RequestMapping(value = "double", method = { RequestMethod.GET, RequestMethod.POST })
 public class DoublePathController {

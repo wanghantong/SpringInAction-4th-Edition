@@ -1,20 +1,28 @@
 package com.bookstore.data.webdriver.utils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ElementUtil {
 
 	public static Logger logger = Logger.getLogger(ElementUtil.class); // this
-	
+
 	public static void setWindowMaxSize(WebDriver driver) {
 		driver.manage().window().maximize();
 	}
@@ -37,7 +45,8 @@ public class ElementUtil {
 		highLight(driver, webElement);
 		return webElement;
 	}
-	public static WebElement getElement(WebDriver driver,WebElement webElement, By by) {
+
+	public static WebElement getElement(WebDriver driver, WebElement webElement, By by) {
 		WebElement element = webElement.findElement(by);
 		highLight(driver, element);
 		return element;
@@ -205,5 +214,109 @@ public class ElementUtil {
 		highLight(driver, elements);
 		return elements;
 
+	}
+
+	/**
+	 * 
+	 * Title: sleepSeconds
+	 * 
+	 * <p>
+	 * Description: sleep the current step for a few seconds
+	 * </p>
+	 * 
+	 * @param seconds
+	 *            -- the seconds we need to sleep
+	 * 
+	 */
+	public static void sleepSeconds(double seconds) {
+		logger.info("Begin to sleep current step for " + seconds + " seconds........");
+		// You need to be in a synchronized block in order for Object.wait() to
+		// work.
+
+		// Also, I recommend looking at the concurrency packages instead of the
+		// old school threading packages. They are safer and way easier to work
+		// with.
+		// synchronized (driver)
+		// {
+		// driver.wait(seconds * 1000);
+		// }
+		try {
+			Thread.sleep((long) (seconds * 1000));
+		} catch (InterruptedException e) {
+			logger.error("Sleep current step met an error:" + e.getMessage());
+		}
+
+	}
+
+	/**
+	 * 
+	 * Title: screenShort
+	 * 
+	 * <p>
+	 * Description: highLight the element or module then screenShort it
+	 * </p>
+	 * 
+	 * @param filePath
+	 *            -- the screenShort picture saved path
+	 * @throws IOException
+	 * 
+	 */
+	public static void screenShort(WebDriver driver, String filePath) throws IOException {
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(scrFile, new File(filePath));
+	}
+
+	/**
+	 * 
+	 * Title: presenceOfElementLocated
+	 * 
+	 * <p>
+	 * Description: checking an element is present on the DOM of a page.whatever
+	 * the element visible or invisible is ok.
+	 * </p>
+	 * 
+	 * @param driver
+	 * @param seconds
+	 * @param locator
+	 * @return : element
+	 * 
+	 */
+	public static WebElement presenceOfElementLocated(WebDriver driver, int seconds, final By locator) {
+
+		WebDriverWait wait = new WebDriverWait(driver, seconds);
+
+		WebElement element = null;
+		try {
+			element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		} catch (TimeoutException e) {
+			logger.error("presenceOfElementLocated  : " + e);
+		}
+
+		return element;
+
+	}
+
+	/**
+	 * Title: invisibilityOfElementLocated
+	 * <p>
+	 * Description: wait for some seconds, checking that an element is either
+	 * invisible or not present on the DOM.
+	 * </p>
+	 * 
+	 * @param driver
+	 * @param seconds
+	 * @param locator
+	 * @return
+	 * 
+	 */
+	public static Boolean invisibilityOfElementLocated(WebDriver driver, int seconds, final By locator) {
+		WebDriverWait wait = new WebDriverWait(driver, seconds);
+		Boolean bool = false;
+		try {
+			bool = wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+		} catch (Exception e) {
+			logger.error("invisibilityOfElementLocated  : " + e);
+		}
+		return bool;
 	}
 }

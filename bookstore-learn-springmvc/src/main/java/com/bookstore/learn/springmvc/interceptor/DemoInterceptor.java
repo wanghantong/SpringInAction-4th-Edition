@@ -29,12 +29,10 @@ public class DemoInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		
+
 		System.err.println("********* DemoInterceptor's preHandle ***** true ****");
-		
+
 		return true;
 	}
-	
-	
 
 }

@@ -104,6 +104,12 @@
 			<artifactId>spring-webmvc-portlet</artifactId>
 		</dependency>
 		<!-- Spring end -->
+		<!-- fastjson start -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+		</dependency>
+		<!-- fastjson end -->
 		<!-- Spring end -->
 
 		<!-- spring orm -->

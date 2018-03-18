@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <CommunicationClass
+        name="com.dragon.coorperation.service.BaseService" x="405" y="237"/>
+    <CommunicationClass
+        name="com.dragon.coorperation.service.BaseServiceImpl" x="317" y="315">
+        <Extension destinationClassName="com.dragon.coorperation.service.BaseService"/>
+    </CommunicationClass>
+    <CommunicationClass
+        name="com.dragon.coorperation.service.PartnerService" x="150" y="298">
+        <Extension destinationClassName="com.dragon.coorperation.service.BaseService"/>
+    </CommunicationClass>
+    <CommunicationClass name="com.dragon.coorperation.service.PartnerPO"
+        x="117" y="183"/>
+    <CommunicationClass
+        name="com.dragon.coorperation.service.PartnerServiceImpl"
+        x="258" y="142">
+        <Extension destinationClassName="com.dragon.coorperation.service.BaseServiceImpl"/>
+        <Extension destinationClassName="com.dragon.coorperation.service.PartnerService"/>
+    </CommunicationClass>
+</ClassDiagram>

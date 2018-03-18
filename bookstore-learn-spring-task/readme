@@ -1,0 +1,37 @@
+1.工程简介
+SpringTask作为Spring框架执行定时任务的一个封装,主要依赖于TaskExecutor and TaskScheduler两个接口。
+
+该先讲述了Spring容器环境初始化的几种方式,并提供的部分的参考代码和链接
+然后又深入讲述了Spring Task的使用方法
+
+官方文档参考:
+http://docs.spring.io/spring/docs/current/spring-framework-reference/html/scheduling.html
+
+2.工程目录结构
+Spring容器初始化
+2.1
+包名:com.bookstore.learn.spring.task.classscan.configuration
+内容:使用Java配置,无XML文件,通过加载配置类的方式启动Spring容器
+2.2
+包名:com.bookstore.learn.spring.task.packagescan.configuration
+内容:使用Java配置,无XML文件,通过扫描包路径来查找启动配置类,完成Spring容器启动
+2.3
+包名:com.bookstore.learn.spring.task.xml.configuration
+内容:使用XML配置,通过加载XML文件来完成Spring容器启动
+文件位置:src/main/resources/init/beans.xml
+2.4
+包名:
+内容:使用XML和Java混合配置,通过加载XML文件来完成Spring容器启动
+2.5
+包名:
+内容:使用Java和XML混合配置,在Configuration中引入XML
+
+定时任务与异步执行
+2.6
+包名:com.bookstore.learn.spring.task.schedule
+内容:使用TaskExecutor执行任务,TaskExecutor的类型为ThreadPoolTaskExecutor
+2.6.1使用xml配置声明依赖的TaskExecutor和执行任务类TaskExecutorExample,并将TaskExecutor注入到TaskExecutorExample中
+2.6.2使用Java配置,将TaskExecutor声明为组件,通过ThreadPoolTaskExecutor的Set方法设置各个属性,并初始化<这个很重要>,
+然后把TaskExecutorJavaConfigExample声明为组件,并把其依赖的TaskExecutor自动注入,最后通过TaskConfig类初始化
+2.7
+

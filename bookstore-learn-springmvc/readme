@@ -37,6 +37,222 @@
 // MockMvcRequestBuilders:RequestBuilder的工具类
 // MockMvcResultMatchers:ResultMatcher的工具类
 3.
+
+
+———————————————————————————————————————————————————————————————————————
+Spring Security
+1.环境准备:
+jar包:
+<spring-security-core.version>4.2.3.RELEASE</spring-security-core.version>
+<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- spring security 基于Filter的Web安全性支持 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 通过xml或者Java配置Spring Security的功能支持 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- Spring Security的JSP标签库 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 支持基于LDAP进行认证 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-ldap</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 支持通过访问控制列表(access control list, ACL)为域对象提供安全性 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-acl</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 支持使用OPENID进行集中式认证 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-cas</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 使用Spring Security 注解时使用AspectJ切面 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-aspects</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 加密解密 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-crypto</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+
+
+
+2.思路
+Spring Security是通过一系列的Filter来提供各种安全性功能
+
+DelefatingFilterProxy是一个特殊的Servlet Filter, 它将工作委托给一个javax.servlet.Filter实现类注册在Spring上下文中
+
+DelefatingFilterProxy ————————————>   已注入Spring的Filter
+         |									  |
+   Servlet上下文    						Spring应用上下文
+   
+3.基于Java的配置实现——增加2个配置类
+3.1配置初始化类,拦截发往应用中的请求并将请求委托给ID为springSecurityFilterChain的Bean
+SecurityWebApp初始化类,继承AbstractSecurityWebApplicationInitializer即可(使用Java的方式配置DelefatingFilterProxy)
+public class MessageSecurityWebApplicationInitializer extends
+		AbstractSecurityWebApplicationInitializer {
+}
+3.2开启安全配置
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
+}
+
+3.3
+3.3.1上述配置类一般写在Configuration中,无论是单独使用Spring还是Spring-Web都必须要扫描到当前这两个类,否则加载失败
+3.3.2配置成功后,请求页面后会调起默认的登陆页
+
+4.WebSecurityConfigurerAdapter的三个configure()重载方法简介
+4.1
+public void configure(WebSecurity web)
+4.2
+protected void configure(HttpSecurity http)
+针对HTTP请求<资源>的安全配置
+4.3
+protected void configure(AuthenticationManagerBuilder auth) 
+对于安全配置的权限用户的加载方式的配置:
+常用的有:
+auth.jdbcAuthentication().dataSource(dataSource);
+auth.inMemoryAuthentication().withUser("user").password("password").roles("USER");
+auth.userDetailsService(new DemoUserDetailsService(userRepositoryImpl));
+
+注意事项:
+1.基于内存的配置基本为写死的
+2.基于数据库的配置可以细化为2种,当前为数据库的最简单配置,此时要求数据库表的设计要和Spring Security耦合
+3.基于UserDetailService的扩展实现,这种方式对于权限和用户的存储是不关心的,最终将采用默认的Spring Security 的User来实现
+
+JDBC配置参考数据库表
+##User Schema
+
+create table users(
+	username varchar(50) not null primary key,
+	password varchar(50) not null,
+	enabled boolean not null
+) ENGINE=InnoDB;
+
+create table authorities (
+	username varchar(50) not null,
+	authority varchar(50) not null,
+	constraint fk_authorities_users foreign key(username) references users(username)
+) ENGINE=InnoDB;
+create unique index ix_auth_username on authorities (username,authority);
+
+
+##Group Authorities
+
+create table groups (
+	id bigint UNSIGNED not null auto_increment primary key,
+	group_name varchar(50) not null
+) ENGINE=InnoDB;;
+
+create table group_authorities (
+	group_id bigint not null,
+	authority varchar(50) not null,
+	constraint fk_group_authorities_group foreign key(group_id) references groups(id)
+) ENGINE=InnoDB;
+
+create table group_members (
+	id bigint UNSIGNED not null auto_increment primary key,
+	username varchar(50) not null,
+	group_id bigint not null,
+	constraint fk_group_members_group foreign key(group_id) references groups(id)
+) ENGINE=InnoDB;
+
+JPA自动建表JavaBean参考配置:
+@Entity(name = "users")
+public class User {
+
+	@Id
+	@Column(name = "`username`", unique = true)
+	private String username;
+	
+	@Column
+	private String password;
+	
+	@Column
+	private boolean enabled;
+}
+
+@Entity(name = "groups")
+public class Group implements Serializable {
+
+	private static final long serialVersionUID = -5922520487336692424L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
+	@Column
+	private String group_name;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<User> users = new ArrayList<User>();
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Authority> authorities = new HashSet<Authority>();
+
+}
+
+@Entity(name = "authorities")
+public class Authority {
+
+	@Id
+	@Column(name = "`username`", unique = true)
+	private String username;
+	
+	@Column(name = "`authority`")
+	private String authority;
+	
+}
+
+表数据初始化以及注意事项:
+
+INSERT INTO users(username,PASSWORD,enabled) VALUES('admin','123456',1),('user','123456',1),('user2','123456',0);
+INSERT INTO authorities VALUES('admin','ROLE_ADMIN'),('user','ROLE_USER'),('user2','ROLE_USER');
+
+>>>>>>>>>>>>>>>>这里不确定了,总之,如果采用Spring Security默认的模式,那么角色的名称就必须这么定义,ROLE_USER,然后呢,还需要在组内增加关联的信息,否则查询失败
+
+insert into groups values(1,"admin");
+insert into groups values(2,"user");
+insert into group_authorities values(1,'ADMIN');
+insert into group_authorities values(2,'USER');
+
+
+5.关于userDetailsService
+作为一种对于数据层透明的实现方式,无论你使用任何类型的数据库存储或者调用第三方接口,那么你需要做的是就是将其返回结果进行转换成Spring Security.User所需要的东西
+
+
+By Dragon 2017.08.17
+———————————————————————————————————————————————————————————————————————
+
+
+
+
+
+
 			
 
 

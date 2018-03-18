@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <CommunicationClass
+        name="com.bookstore.blog.repository.ArticleRepository" x="382" y="283"/>
+    <CommunicationClass
+        name="com.bookstore.blog.repository.impl.ArticleRepositoryImpl"
+        x="349" y="173">
+        <Extension destinationClassName="com.bookstore.blog.repository.ArticleRepository"/>
+    </CommunicationClass>
+</ClassDiagram>

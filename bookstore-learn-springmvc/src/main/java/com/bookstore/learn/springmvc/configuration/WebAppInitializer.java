@@ -1,13 +1,20 @@
 package com.bookstore.learn.springmvc.configuration;
 
 import javax.servlet.Filter;
+import javax.servlet.FilterRegistration;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import com.bookstore.learn.springmvc.filters.DemoFilter;
+import com.bookstore.learn.springmvc.filters.DemoFilter2;
+import com.bookstore.learn.springmvc.listener.DemoListener;
+import com.bookstore.learn.springmvc.service.MyFilter;
 
 /**
  * DispatcherServlet
@@ -32,8 +39,10 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	}
 
 	@Override
-	public void onStartup(ServletContext servletContext) throws ServletException {
-		super.onStartup(servletContext);
+	public void onStartup(ServletContext context) throws ServletException {
+		FilterRegistration.Dynamic addFilter = context.addFilter("DemoFilter2", new DemoFilter2());
+		addFilter.addMappingForUrlPatterns(null, true, "/","*map");
+		super.onStartup(context);
 	}
 
 	/**
@@ -49,7 +58,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		MultipartConfigElement multipartConfigElement = new MultipartConfigElement("/Users/Dragon/Desktop", 5097152,
 				5097152, 0);
 		registration.setMultipartConfig(multipartConfigElement);
-
 	}
 
 	/**
@@ -59,7 +67,17 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	 */
 	@Override
 	protected Filter[] getServletFilters() {
-		return new Filter[] { new HiddenHttpMethodFilter() };
+		return new Filter[] { new HiddenHttpMethodFilter(),new DemoFilter() };
+	}
+
+	@Override
+	protected ApplicationContextInitializer<?>[] getRootApplicationContextInitializers() {
+		return super.getRootApplicationContextInitializers();
+	}
+
+	@Override
+	protected void registerContextLoaderListener(ServletContext context) {
+		context.addListener(DemoListener.class);
 	}
 
 }

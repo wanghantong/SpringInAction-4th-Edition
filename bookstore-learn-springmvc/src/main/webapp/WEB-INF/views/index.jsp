@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> 
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -21,6 +25,8 @@
 <title>index</title>
 </head>
 <body>
+
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -29,18 +35,26 @@
 			</tr>
 		</thead>
 		<tbody class="table-hover">
-			<tr>
-				<td>二级路径</td>
-				<td><a href="/double/parentControl">/double/parentControl</td>
-			</tr>
-			<tr>
-				<td>redirect</td>
-				<td><a href="/redirect">redirect</td>
-			</tr>
-			<tr>
-				<td>forward</td>
-				<td><a href="/forward">redirect</td>
-			</tr>
+			 <sec:authorize access="hasAuthority('ADMIN')"> 
+				<tr>
+					<td>二级路径 has Role admin</td>
+					<td><a href="/double/parentControl">/double/parentControl</td>
+				</tr>
+			</sec:authorize>
+			<%-- <sec:authorize
+				access="isAuthenticated() and principal.username=='admin'">
+				<tr>
+					<td>redirect is Authenticated</td>
+					<td><a href="/redirect">redirect</td>
+				</tr>
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated() and hasAnyAuthority('ADMIN')" url="/forward">
+				<tr>
+					<td>forward</td>
+					<spring:url value="/forward" var="forward_sec"></spring:url>
+					<td><a href="${forward_sec} ">forward sec</td>
+				</tr>
+			</sec:authorize> --%>
 			<tr>
 				<td>redirectWithData</td>
 				<td><a href="/redirectWithData">redirect</td>

@@ -1,0 +1,15 @@
+
+在设置循环的时候,默认会执行一次,然后再执行RepeatCount次,即一共执行了1+RepeatCount次
+
+newTrigger().withIdentity("trigger3", "group1").startAt(startTime)
+        .withSchedule(simpleSchedule().withIntervalInSeconds(1).withRepeatCount(0)).build();
+此代码当前的job会被执行2次
+
+-------上述参考job3运行结果-----(因为这时Scheduler还没有start,如果已经start向其中添加job,那么只会执行repeatCount次,参考job7)---------
+
+
+
+
+
+        
+        

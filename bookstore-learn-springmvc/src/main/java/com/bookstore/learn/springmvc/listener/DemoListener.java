@@ -11,32 +11,33 @@ public class DemoListener implements HttpSessionListener, ServletContextListener
 
 	@Override
 	public void requestDestroyed(ServletRequestEvent paramServletRequestEvent) {
-		
+		System.err.println(this.getClass().getName() + "  requestDestroyed");
 	}
 
 	@Override
 	public void requestInitialized(ServletRequestEvent paramServletRequestEvent) {
-		
+		System.err.println(this.getClass().getName() + "  requestInitialized");
+
 	}
 
 	@Override
 	public void contextDestroyed(ServletContextEvent paramServletContextEvent) {
-		
+		System.err.println(this.getClass().getName() + "  contextDestroyed");
 	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent paramServletContextEvent) {
-		
+		System.err.println(this.getClass().getName() + "  contextInitialized");
 	}
 
 	@Override
 	public void sessionCreated(HttpSessionEvent paramHttpSessionEvent) {
-		
+		System.err.println(this.getClass().getName() + "  sessionCreated");
 	}
 
 	@Override
 	public void sessionDestroyed(HttpSessionEvent paramHttpSessionEvent) {
-		
+		System.err.println(this.getClass().getName() + "  sessionDestroyed");
 	}
 
 }

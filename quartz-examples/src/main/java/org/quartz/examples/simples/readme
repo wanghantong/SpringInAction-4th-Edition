@@ -1,0 +1,5 @@
+基本的demo,涉及到了2个工具类JobBuilder(构建Job的工具类),TriggerBuilder(触发Job执行),以及工厂方法创建Scheduler
+SchedulerFactory sf = new StdSchedulerFactory();
+Scheduler sched = sf.getScheduler();
+
+注:例子修改了默认的日志记录方式,增加了slf4j和log4j2的连接器,引入了Log4j2,采用log4j2来记录日志

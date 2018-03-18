@@ -40,106 +40,106 @@ public class POIHSSFExcel {
 	 * @throws IOException
 	 * @throws InvalidFormatException
 	 */
-	public static String[][] readByHSSF_Sax(String filePath, String sheetName)
-			throws InvalidFormatException, IOException {
-		InputStream inp = new FileInputStream(filePath);
-		Workbook wb = WorkbookFactory.create(inp);
-		Sheet sheet = wb.getSheet(sheetName);
-		if (sheet.equals("") || sheet == null) {
-			throw new RuntimeException("sorry, can't find the sheet by name :"
-					+ sheetName);
-		}
-		int firstRowNum = sheet.getFirstRowNum();
-		int lastRowNum = sheet.getLastRowNum();
-		// System.out.println("firstRowNum   " + firstRowNum +
-		// "   lastRowNum   "
-		// + lastRowNum);
-		Row firstRow = sheet.getRow(firstRowNum);
-		Row lastRow = sheet.getRow(lastRowNum);
-
-		short firstCellNum = firstRow.getFirstCellNum();
-		Cell firstCell = firstRow.getCell(firstCellNum);
-
-		short lastCellNum = lastRow.getLastCellNum();
-		Cell lastCell = lastRow.getCell(lastCellNum - 1);
-
-		// System.out.println("firstCellNum   " + firstCellNum
-		// + "   lastCellNum   " + lastCellNum);
-
-		String firstCellText = firstCell.getRichStringCellValue().toString();
-		String lastCellText = lastCell.getRichStringCellValue().toString();
-
-		// System.out.println("firstCellText   " + firstCellText
-		// + "   lastCellText   " + lastCellText);
-
-		if (!firstCellText.equalsIgnoreCase("caseStart")
-				|| !lastCellText.equalsIgnoreCase("caseEnd")) {
-			throw new RuntimeException("warning: the data format error!");
-		}
-		/**
-		 * 行数就是末行-初始行+1, 列是从firstRow的firstCellNum+1 到 lastRow的lastCellNum - 1
-		 * 数据格式: S A A A A B B B B C C C C E
-		 */
-		String[][] toArray = new String[lastRowNum - firstRowNum + 1][lastCellNum
-				- firstCellNum - 2];
-		// for (Row row : sheet) {
-		for (int i = 0; i < lastRowNum - firstRowNum + 1; i++) {
-			for (int j = 1; j <= lastCellNum - firstCellNum - 2; j++) {
-				// for (Cell cell : row) {
-				// CellReference cellRef = new CellReference(firstRowNum + i,
-				// sheet.getRow(firstRowNum + i).getCell(firstCellNum + j)
-				// .getColumnIndex());
-				// System.out.print(cellRef.formatAsString());
-				// System.out.print(" - ");
-				switch (sheet.getRow(firstRowNum + i).getCell(firstCellNum + j)
-						.getCellType()) {
-				case Cell.CELL_TYPE_STRING:
-					String text = sheet.getRow(firstRowNum + i)
-							.getCell(firstCellNum + j).getRichStringCellValue()
-							.getString();
-					// System.out.println(text);
-					toArray[i][j - 1] = text;
-					break;
-				case Cell.CELL_TYPE_NUMERIC:
-					if (DateUtil.isCellDateFormatted(sheet.getRow(
-							firstRowNum + i).getCell(firstCellNum + j))) {
-						Date dateCellValue = sheet.getRow(firstRowNum + i)
-								.getCell(firstCellNum + j).getDateCellValue();
-						text = DateFormat.dateChange(dateCellValue,
-								"yyyy-MM-dd hh:mm:ss");
-						// System.out.println(text);
-						toArray[i][j - 1] = text;
-					} else {
-						double numericCellValue = sheet.getRow(firstRowNum + i)
-								.getCell(firstCellNum + j)
-								.getNumericCellValue();
-						text = numericCellValue + "";
-						System.out.println(text);
-						toArray[i][j - 1] = text;
-					}
-					break;
-				case Cell.CELL_TYPE_BOOLEAN:
-					boolean booleanCellValue = sheet.getRow(firstRowNum + i)
-							.getCell(firstCellNum + j).getBooleanCellValue();
-					text = Boolean.toString(booleanCellValue);
-					// System.out.println(text);
-					toArray[i][j - 1] = text;
-					break;
-				case Cell.CELL_TYPE_FORMULA:
-					String cellFormula = sheet.getRow(firstRowNum + i)
-							.getCell(firstCellNum + j).getCellFormula();
-					text = cellFormula;
-					// System.out.println(cellFormula);
-					toArray[i][j - 1] = text;
-					break;
-				default:
-					// System.out.println();
-				}
-			}
-		}
-		return toArray;
-		// System.out.println("toarray   :   " + toArray);
-	}
+//	public static String[][] readByHSSF_Sax(String filePath, String sheetName)
+//			throws InvalidFormatException, IOException {
+//		InputStream inp = new FileInputStream(filePath);
+//		Workbook wb = WorkbookFactory.create(inp);
+//		Sheet sheet = wb.getSheet(sheetName);
+//		if (sheet.equals("") || sheet == null) {
+//			throw new RuntimeException("sorry, can't find the sheet by name :"
+//					+ sheetName);
+//		}
+//		int firstRowNum = sheet.getFirstRowNum();
+//		int lastRowNum = sheet.getLastRowNum();
+//		// System.out.println("firstRowNum   " + firstRowNum +
+//		// "   lastRowNum   "
+//		// + lastRowNum);
+//		Row firstRow = sheet.getRow(firstRowNum);
+//		Row lastRow = sheet.getRow(lastRowNum);
+//
+//		short firstCellNum = firstRow.getFirstCellNum();
+//		Cell firstCell = firstRow.getCell(firstCellNum);
+//
+//		short lastCellNum = lastRow.getLastCellNum();
+//		Cell lastCell = lastRow.getCell(lastCellNum - 1);
+//
+//		// System.out.println("firstCellNum   " + firstCellNum
+//		// + "   lastCellNum   " + lastCellNum);
+//
+//		String firstCellText = firstCell.getRichStringCellValue().toString();
+//		String lastCellText = lastCell.getRichStringCellValue().toString();
+//
+//		// System.out.println("firstCellText   " + firstCellText
+//		// + "   lastCellText   " + lastCellText);
+//
+//		if (!firstCellText.equalsIgnoreCase("caseStart")
+//				|| !lastCellText.equalsIgnoreCase("caseEnd")) {
+//			throw new RuntimeException("warning: the data format error!");
+//		}
+//		/**
+//		 * 行数就是末行-初始行+1, 列是从firstRow的firstCellNum+1 到 lastRow的lastCellNum - 1
+//		 * 数据格式: S A A A A B B B B C C C C E
+//		 */
+//		String[][] toArray = new String[lastRowNum - firstRowNum + 1][lastCellNum
+//				- firstCellNum - 2];
+//		// for (Row row : sheet) {
+//		for (int i = 0; i < lastRowNum - firstRowNum + 1; i++) {
+//			for (int j = 1; j <= lastCellNum - firstCellNum - 2; j++) {
+//				// for (Cell cell : row) {
+//				// CellReference cellRef = new CellReference(firstRowNum + i,
+//				// sheet.getRow(firstRowNum + i).getCell(firstCellNum + j)
+//				// .getColumnIndex());
+//				// System.out.print(cellRef.formatAsString());
+//				// System.out.print(" - ");
+//				switch (sheet.getRow(firstRowNum + i).getCell(firstCellNum + j)
+//						.getCellType()) {
+//				case Cell.CELL_TYPE_STRING:
+//					String text = sheet.getRow(firstRowNum + i)
+//							.getCell(firstCellNum + j).getRichStringCellValue()
+//							.getString();
+//					// System.out.println(text);
+//					toArray[i][j - 1] = text;
+//					break;
+//				case Cell.CELL_TYPE_NUMERIC:
+//					if (DateUtil.isCellDateFormatted(sheet.getRow(
+//							firstRowNum + i).getCell(firstCellNum + j))) {
+//						Date dateCellValue = sheet.getRow(firstRowNum + i)
+//								.getCell(firstCellNum + j).getDateCellValue();
+//						text = DateFormat.dateChange(dateCellValue,
+//								"yyyy-MM-dd hh:mm:ss");
+//						// System.out.println(text);
+//						toArray[i][j - 1] = text;
+//					} else {
+//						double numericCellValue = sheet.getRow(firstRowNum + i)
+//								.getCell(firstCellNum + j)
+//								.getNumericCellValue();
+//						text = numericCellValue + "";
+//						System.out.println(text);
+//						toArray[i][j - 1] = text;
+//					}
+//					break;
+//				case Cell.CELL_TYPE_BOOLEAN:
+//					boolean booleanCellValue = sheet.getRow(firstRowNum + i)
+//							.getCell(firstCellNum + j).getBooleanCellValue();
+//					text = Boolean.toString(booleanCellValue);
+//					// System.out.println(text);
+//					toArray[i][j - 1] = text;
+//					break;
+//				case Cell.CELL_TYPE_FORMULA:
+//					String cellFormula = sheet.getRow(firstRowNum + i)
+//							.getCell(firstCellNum + j).getCellFormula();
+//					text = cellFormula;
+//					// System.out.println(cellFormula);
+//					toArray[i][j - 1] = text;
+//					break;
+//				default:
+//					// System.out.println();
+//				}
+//			}
+//		}
+//		return toArray;
+//		// System.out.println("toarray   :   " + toArray);
+//	}
 
 	/**
 	 * Operate by event

@@ -13,49 +13,193 @@
 		<module>bookstore-interview</module>
 		<module>bookstore-blog</module>
 		<module>bookstore-learn-spring-chapter11</module>
+		<module>bookstore-mock</module>
+		<module>bookstore-learn-springmvc</module>
+		<module>springInActionChapter5</module>
+		<module>chapter5</module>
+		<module>testservlet3</module>
+		<module>quartz-examples</module>
+		<module>bookstore-learn-spring-task</module>
+		<module>bookstore-learn-springInAction-chapter9</module>
+		<module>fixedChapter9</module>
+		<module>bookstore-learn-spring-security</module>
 	</modules>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype-snapshots</id>
+			<name>Sonatype Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<repositories>
+		<repository>
+			<id>jboss</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.com/maven2/</url>
+			<releases>
+				<updatePolicy>always</updatePolicy><!-- never,always,interval n -->
+				<enabled>true</enabled>
+				<checksumPolicy>warn</checksumPolicy><!-- fail,ignore -->
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<layout>default</layout>
+		</repository>
+
+		<repository>
+			<id>sonatype-snapshots</id>
+			<name>Sonatype Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
 		<junit.version>4.12</junit.version>
+		<hamcrest-core.version>1.3</hamcrest-core.version>
 		<system-rules.version>1.16.1</system-rules.version>
 
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j-simple.version>1.7.12</slf4j-simple.version>
+		<log4j-core.version>2.8.2</log4j-core.version>
+		<disruptor.version>3.3.6</disruptor.version>
+		<log4j-slf4j-impl.version>2.8.2</log4j-slf4j-impl.version>
+		<jmdns.version>3.4.1</jmdns.version>
+
+
 		<javassist.version>3.20.0-GA</javassist.version>
 		<mime4j.version>0.6</mime4j.version>
+		<commons-lang3.version>3.5</commons-lang3.version>
+
 		<!-- <selenium2.version>2.53.1</selenium2.version> -->
 		<xml-apis.version>1.4.01</xml-apis.version>
 		<jxpath.version>1.3</jxpath.version>
-		<mockito-all.version>1.8.4</mockito-all.version>
+		<!-- mock 1.10.19 1.8.4 -->
+		<mockito-all.version>1.10.19</mockito-all.version>
+		<mockito-core.version>2.2.26</mockito-core.version>
+		<jmock.version>2.8.2</jmock.version>
+		<jmock-junit4.version>2.8.2</jmock-junit4.version>
+		<jmock-cglib.version>1.2.0</jmock-cglib.version>
+		<jmock-example.version>2.8.2</jmock-example.version>
+		<easymock.version>3.4</easymock.version>
+		<easymockclassextension.version>3.2</easymockclassextension.version>
+		<unitils-easymock.version>3.4.3</unitils-easymock.version>
+		<!-- mock end -->
+
+		<!-- httpclient -->
+		<httpclient.version>4.5.2</httpclient.version>
+		<fluent-hc.version>4.5.2</fluent-hc.version>
+		<!-- json start -->
+		<json-simple.version>1.1.1</json-simple.version>
+		<json-lib.version>2.4</json-lib.version>
+		<json.version>20160810</json.version>
+		<!-- <fastjson.version>1.2.23</fastjson.version> -->
+		<fastjson.version>1.2.17</fastjson.version>
+		<!-- json end -->
+
+
 		<jxl.version>2.6.12</jxl.version>
-		<poi.version>3.10-FINAL</poi.version>
+		<!-- POI 3.15 3.10-FINAL -->
+		<poi.version>3.15</poi.version>
 		<codec.version>1.9</codec.version>
 		<javax.inject.version>1</javax.inject.version>
-
+		<!-- java EE containner -->
 		<ow2-servlet-3.0-spec.version>1.0.13</ow2-servlet-3.0-spec.version>
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 		<jsp-api.version>2.2</jsp-api.version>
 		<jstl.version>1.2.1</jstl.version>
 		<javax.el-api.version>3.0.0</javax.el-api.version>
 
-		<springframework.version>2.5.6</springframework.version>
-		<spring-test.version>4.2.0.RELEASE</spring-test.version>
-		<!-- spring-orm 4.3.4.RELEASE -->
-		<spring-orm.version>4.2.0.RELEASE</spring-orm.version>
+		<hsqldb.version>2.3.2</hsqldb.version>
 
-		<spring-boot-starter.version>1.2.5.RELEASE</spring-boot-starter.version>
-		<h2.version>1.4.187</h2.version>
+		<springframework.version>2.5.6</springframework.version>
+
+		<!-- spring-core 4.3.4.RELEASE 5.0.0.M3 -->
+		<spring-core.version>4.3.9.RELEASE</spring-core.version>
+		<spring-beans.version>4.3.9.RELEASE</spring-beans.version>
+		<spring-context.version>4.3.9.RELEASE</spring-context.version>
+		<spring-context-support.version>4.3.9.RELEASE</spring-context-support.version>
+		<spring-expression.version>4.3.9.RELEASE</spring-expression.version>
+		<!-- spring-aop -->
+		<spring-aop.version>4.3.9.RELEASE</spring-aop.version>
+		<spring-aspects.version>4.3.9.RELEASE</spring-aspects.version>
+		<!-- spring-test -->
+		<spring-test.version>4.3.9.RELEASE</spring-test.version>
+		<!-- spring-data -->
+		<spring-orm.version>4.3.9.RELEASE</spring-orm.version>
+		<spring-jdbc.version>4.3.9.RELEASE</spring-jdbc.version>
+		<spring-jms.version>4.3.9.RELEASE</spring-jms.version>
+		<spring-oxm.version>4.3.9.RELEASE</spring-oxm.version>
+		<spring-tx.version>4.3.9.RELEASE</spring-tx.version>
+		<spring-messaging.version>4.3.9.RELEASE</spring-messaging.version>
+		<!-- spring web -->
+		<spring-web.version>4.3.9.RELEASE</spring-web.version>
+		<spring-webmvc.version>4.3.9.RELEASE</spring-webmvc.version>
+		<spring-webmvc-portle.version>4.3.9.RELEASE</spring-webmvc-portle.version>
+		<spring-websocket.version>4.3.9.RELEASE</spring-websocket.version>
+		<spring-websocket.version>4.3.9.RELEASE</spring-websocket.version>
+		<!-- spring-instrument -->
+		<spring-instrument-tomcat.version>4.3.9.RELEASE</spring-instrument-tomcat.version>
+		<spring-instrument.version>4.3.9.RELEASE</spring-instrument.version>
+
+		<spring-security-core.version>4.2.3.RELEASE</spring-security-core.version>
+
+		<spring-boot-starter.version>1.4.2.RELEASE</spring-boot-starter.version>
+
+
+		<!-- <thymeleaf-spring4.version>2.1.1.RELEASE</thymeleaf-spring4.version> -->
+		<thymeleaf-spring4.version>3.0.7.RELEASE</thymeleaf-spring4.version>
+		<thymeleaf.version>3.0.7.RELEASE</thymeleaf.version>
+		<!-- <thymeleaf.version>2.1.1.RELEASE</thymeleaf.version> -->
+		<!-- <thymeleaf.version>2.1.5.RELEASE</thymeleaf.version> -->
+		<thymeleaf-spring3.version>3.0.7.RELEASE</thymeleaf-spring3.version>
+		<!-- <thymeleaf-extras-springsecurity4.version>2.1.3.RELEASE</thymeleaf-extras-springsecurity4.version> -->
+		<thymeleaf-extras-springsecurity4.version>3.0.2.RELEASE</thymeleaf-extras-springsecurity4.version>
+		<!-- <thymeleaf-extras-springsecurity3.version>2.1.1.RELEASE</thymeleaf-extras-springsecurity3.version> -->
+		<thymeleaf-extras-springsecurity3.version>3.0.2.RELEASE</thymeleaf-extras-springsecurity3.version>
+		<thymeleaf-testing.version>3.0.3.RELEASE</thymeleaf-testing.version>
+		<thymeleaf-spring5.version>3.0.6.M4</thymeleaf-spring5.version>
+		<thymeleaf-extras-java8time.version>3.0.0.RELEASE</thymeleaf-extras-java8time.version>
 		<!-- hibernate version start -->
-		<!--<hibernate-core.version>4.3.6.Final</hibernate-core.version> -->
 		<hibernate.ga.version>3.2.6.ga</hibernate.ga.version>
-		<hibernate-core.version>5.2.5.Final</hibernate-core.version>
-		<hibernate-validator.version>5.3.3.Final</hibernate-validator.version>
+		<!--<hibernate-core.version>4.3.6.Final</hibernate-core.version> -->
+
+
+
+		<!--<hibernate-core.version> 4.3.11.Final-atlassian-1 4.3.11.Final 4.3.6.Final -->
+		<hibernate-core.version>4.3.11.Final</hibernate-core.version>
+		<!-- 4.3.3.Final-redhat-1 5.3.3.Final -->
+		<!-- <hibernate-validator.version>5.3.3.Final</hibernate-validator.version> -->
+		<!-- download fail -->
+		<!-- <hibernate-validator.version>4.3.3.Final-redhat-1</hibernate-validator.version> -->
+		<hibernate-validator.version>4.3.0.Final</hibernate-validator.version>
+
 		<hibernate-jpa-2.0-api.version>1.0.1.Final-redhat-3</hibernate-jpa-2.0-api.version>
-		<hibernate-testing.version>5.2.5.Final</hibernate-testing.version>
-		<hibernate-entitymanager.version>5.2.5.Final</hibernate-entitymanager.version>
+		<!-- 4.3.11.Final 5.2.5.Final -->
+		<hibernate-testing.version>4.3.11.Final</hibernate-testing.version>
+		<!-- 4.3.11.Final 5.2.5.Final -->
+		<!-- <hibernate-entitymanager.version>5.0.11.Final</hibernate-entitymanager.version> -->
+		<hibernate-entitymanager.version>4.3.11.Final</hibernate-entitymanager.version>
 		<hibernate-c3p0.version>5.2.5.Final</hibernate-c3p0.version>
 		<hibernate-ehcache.version>5.2.5.Final</hibernate-ehcache.version>
+		<!--<hibernate version>5.2.5.Final -->
 		<!-- hibernate version end -->
 		<jta.version>1.1</jta.version>
 		<maven-plugin-api.version>3.3.9</maven-plugin-api.version>
@@ -70,6 +214,11 @@
 		<!-- UI Automation Start -->
 		<selenium-java.version>3.0.1</selenium-java.version>
 		<jsoup.version>1.10.1</jsoup.version>
+
+		<tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
+
+		<cargo.version>1.6.3</cargo.version>
+		<quartz.version>2.2.1</quartz.version>
 	</properties>
 
 	<dependencyManagement>
@@ -89,6 +238,47 @@
 				<artifactId>slf4j-simple</artifactId>
 				<version>${slf4j-simple.version}</version>
 			</dependency>
+
+
+			<!-- log4j 2 + All Loggers Asynchronous start -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4j-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j-core.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/com.lmax/disruptor -->
+			<!-- Making All Loggers Asynchronous,Future versions of Log4j 2 will require 
+				disruptor-3.3.3.jar or higher -->
+			<dependency>
+				<groupId>com.lmax</groupId>
+				<artifactId>disruptor</artifactId>
+				<version>${disruptor.version}</version>
+			</dependency>
+
+			<!--用于与slf4j保持桥接 -->
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>${log4j-slf4j-impl.version}</version>
+			</dependency>
+
+			<!-- log4j2做advertise的依赖 -->
+			<!-- Chainsaw can automatically process your log files -->
+			<!-- http://logging.apache.org/log4j/2.x/manual/configuration.html#ChainsawSupport -->
+			<dependency>
+				<groupId>javax.jmdns</groupId>
+				<artifactId>jmdns</artifactId>
+				<version>${jmdns.version}</version>
+			</dependency>
+
+
+
 			<!-- javassist -->
 			<dependency>
 				<groupId>org.javassist</groupId>
@@ -102,6 +292,14 @@
 				<artifactId>apache-mime4j</artifactId>
 				<version>${mime4j.version}</version>
 			</dependency>
+
+			<!-- commons-lang3 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+
 
 			<!-- UI automation start -->
 			<!-- org.seleniumhq.selenium/selenium-java -->
@@ -137,6 +335,105 @@
 				<artifactId>mockito-all</artifactId>
 				<version>${mockito-all.version}</version>
 			</dependency>
+
+			<!-- mockito-core -->
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito-core.version}</version>
+			</dependency>
+			<!-- /jmock -->
+			<dependency>
+				<groupId>org.jmock</groupId>
+				<artifactId>jmock</artifactId>
+				<version>${jmock.version}</version>
+			</dependency>
+
+			<!-- jmock-example -->
+			<dependency>
+				<groupId>org.jmock</groupId>
+				<artifactId>jmock-example</artifactId>
+				<version>${jmock-example.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.easymock/easymock -->
+			<dependency>
+				<groupId>org.easymock</groupId>
+				<artifactId>easymock</artifactId>
+				<version>${easymock.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.jmock/jmock-junit4 -->
+			<dependency>
+				<groupId>org.jmock</groupId>
+				<artifactId>jmock-junit4</artifactId>
+				<version>${jmock-junit4.version}</version>
+			</dependency>
+
+			<!-- jmock-cglib -->
+			<dependency>
+				<groupId>jmock</groupId>
+				<artifactId>jmock-cglib</artifactId>
+				<version>${jmock-cglib.version}</version>
+			</dependency>
+
+			<!-- easymockclassextension -->
+			<dependency>
+				<groupId>org.easymock</groupId>
+				<artifactId>easymockclassextension</artifactId>
+				<version>${easymockclassextension.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.unitils/unitils-easymock -->
+			<dependency>
+				<groupId>org.unitils</groupId>
+				<artifactId>unitils-easymock</artifactId>
+				<version>${unitils-easymock.version}</version>
+			</dependency>
+			<!-- mock end -->
+
+
+			<!-- -->
+			<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>fluent-hc</artifactId>
+				<version>${fluent-hc.version}</version>
+			</dependency>
+
+			<!-- /json-simple -->
+			<dependency>
+				<groupId>com.googlecode.json-simple</groupId>
+				<artifactId>json-simple</artifactId>
+				<version>${json-simple.version}</version>
+			</dependency>
+
+			<!--json-lib -->
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>${json-lib.version}</version>
+			</dependency>
+
+			<!-- /json -->
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>${json.version}</version>
+			</dependency>
+			<!-- fastjson -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+
 			<!-- Java Excel -->
 			<dependency>
 				<groupId>net.sourceforge.jexcelapi</groupId>
@@ -169,6 +466,15 @@
 				<version>${junit.version}</version>
 			</dependency>
 
+			<!-- hamcrest-core -->
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-core</artifactId>
+				<version>${hamcrest-core.version}</version>
+			</dependency>
+
+
+
 			<dependency>
 				<groupId>com.github.stefanbirkner</groupId>
 				<artifactId>system-rules</artifactId>
@@ -195,12 +501,22 @@
 				<version>${javax.inject.version}</version>
 			</dependency>
 
+
 			<!-- https://mvnrepository.com/artifact/org.ow2.spec.ee/ow2-servlet-3.0-spec -->
 			<dependency>
 				<groupId>org.ow2.spec.ee</groupId>
 				<artifactId>ow2-servlet-3.0-spec</artifactId>
 				<version>${ow2-servlet-3.0-spec.version}</version>
 			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>${javax.servlet-api.version}</version>
+			</dependency>
+
+
 			<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
 			<dependency>
 				<groupId>javax.servlet.jsp</groupId>
@@ -229,29 +545,51 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-core.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-beans.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-context.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context-support</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-context-support.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-expression</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-expression.version}</version>
 			</dependency>
 			<!-- Spring Core end -->
+			<!-- spring-web start -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring-web.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring-webmvc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc-portlet</artifactId>
+				<version>${spring-webmvc-portle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-websocket</artifactId>
+				<version>${spring-websocket.version}</version>
+			</dependency>
+			<!-- spring-web end -->
 
 			<!-- Spring Test start -->
 			<dependency>
@@ -265,61 +603,186 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-aop.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aspects</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-aspects.version}</version>
 			</dependency>
 			<!-- Spring AOP end -->
-
+			<!-- Spring instrument -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-instrument</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-instrument.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-instrument-tomcat</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-instrument-tomcat.version}</version>
 			</dependency>
+			<!-- Spring Security 4.2.3.RELEASE -->
+			<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+			<!-- spring Security 的基本库 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- spring security 基于Filter的Web安全性支持 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 通过xml或者Java配置Spring Security的功能支持 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- Spring Security的JSP标签库 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 支持基于LDAP进行认证 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-ldap</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 支持通过访问控制列表(access control list, ACL)为域对象提供安全性 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-acl</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 支持使用OPENID进行集中式认证 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-cas</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 使用Spring Security 注解时使用AspectJ切面 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-aspects</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+			<!-- 加密解密 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-crypto</artifactId>
+				<version>${spring-security-core.version}</version>
+			</dependency>
+
+			<!-- spring security end -->
+
+
+			<!-- spring data start -->
+			<!-- spring orm -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-messaging</artifactId>
-				<version>${spring-test.version}</version>
+				<version>${spring-messaging.version}</version>
 			</dependency>
-
-			<!-- spring orm -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jms</artifactId>
+				<version>${spring-jms.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-orm</artifactId>
 				<version>${spring-orm.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
-				<version>${spring-orm.version}</version>
+				<version>${spring-jdbc.version}</version>
 			</dependency>
-
 			<!-- spring-tx -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-tx</artifactId>
-				<version>${spring-orm.version}</version>
+				<version>${spring-tx.version}</version>
 			</dependency>
-
 			<!-- spring-oxm -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-oxm</artifactId>
 				<version>${spring-orm.version}</version>
 			</dependency>
+			<!-- spring data end -->
+
+			<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-websocket</artifactId>
+				<version>${spring-orm.version}</version>
+			</dependency>
 
 
 
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring4 -->
 
+
+
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring3 -->
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf-spring3</artifactId>
+				<version>${thymeleaf-spring3.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4 -->
+			<dependency>
+				<groupId>org.thymeleaf.extras</groupId>
+				<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+				<version>${thymeleaf-extras-springsecurity4.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity3 -->
+			<dependency>
+				<groupId>org.thymeleaf.extras</groupId>
+				<artifactId>thymeleaf-extras-springsecurity3</artifactId>
+				<version>${thymeleaf-extras-springsecurity3.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-testing -->
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf-testing</artifactId>
+				<version>${thymeleaf-testing.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5 -->
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf-spring5</artifactId>
+				<version>${thymeleaf-spring5.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-java8time -->
+			<dependency>
+				<groupId>org.thymeleaf.extras</groupId>
+				<artifactId>thymeleaf-extras-java8time</artifactId>
+				<version>${thymeleaf-extras-java8time.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf-spring4</artifactId>
+				<version>${thymeleaf-spring4.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf</artifactId>
+				<version>${thymeleaf.version}</version>
+			</dependency>
 
 			<!-- commons-dbcp2 -->
 			<dependency>
@@ -371,11 +834,6 @@
 				<version>${spring-boot-starter.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>${h2.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
 				<version>${spring-boot-starter.version}</version>
@@ -383,8 +841,8 @@
 			<dependency>
 				<groupId>org.hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
-				<scope>runtime</scope>
-				<version>${spring-boot-starter.version}</version>
+				<!-- <scope>runtime</scope> -->
+				<version>${hsqldb.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -464,6 +922,8 @@
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql-connector-java.version}</version>
 			</dependency>
+
+
 			<!-- maven dependency plugin -->
 			<!-- from https://mvnrepository.com/artifact/org.apache.maven/maven-plugin-api -->
 			<dependency>
@@ -478,11 +938,34 @@
 				<artifactId>jetty-webapp</artifactId>
 				<version>${jetty-webapp.version}</version>
 			</dependency>
+			<!-- https://codehaus-cargo.github.io/cargo/Maven2+Plugin+Installation.html -->
+			<!-- can support all kinds of web containers -->
+			<dependency>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>${cargo.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-core-uberjar</artifactId>
+				<version>${cargo.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-core-container-tomcat</artifactId>
+				<version>${cargo.version}</version>
+			</dependency>
 
-
-
-
-
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz-jobs</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
 
 
 		</dependencies>
@@ -557,7 +1040,34 @@
 					<artifactId>jetty-maven-plugin</artifactId>
 					<version>${jetty-maven-plugin.version}</version>
 				</plugin>
+
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>${tomcat7-maven-plugin.version}</version>
+				</plugin>
+
+
+				<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<version>1.6.4</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
+
+
+
+		<plugins>
+			<!-- maven-compiler-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>

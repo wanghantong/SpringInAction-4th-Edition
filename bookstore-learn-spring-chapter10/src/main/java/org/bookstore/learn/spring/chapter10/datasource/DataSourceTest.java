@@ -49,24 +49,30 @@ public class DataSourceTest {
 		Class<? extends DruidDataSource> class1 = druidDataSource.getClass();
 		System.out.println(class1);
 	}
+
 	@Test
 	public void testDbcp() {
 		Class<? extends BasicDataSource> class1 = basicDataSource.getClass();
 		System.out.println(class1);
 	}
+
 	@Test
 	public void testJdbc() {
 		Class<? extends DriverManagerDataSource> class1 = jdbcDataSource.getClass();
 		System.out.println(class1);
 	}
+
 	@Test
 	public void testJndi() {
 		Class<? extends JndiObjectFactoryBean> class1 = jndiObjectFactoryBean.getClass();
 		System.out.println(class1);
 	}
+
 	@Test
 	public void testEmbbeded() {
 		Class<? extends DataSource> class1 = dataSource.getClass();
 		System.out.println(class1);
 	}
+
+	
 }
